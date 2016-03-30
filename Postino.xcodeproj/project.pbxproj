@@ -310,6 +310,7 @@
 		FC4F5FFC1CAB6574008029CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -326,6 +327,7 @@
 		FC4F5FFD1CAB6574008029CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -378,6 +380,7 @@
 				FC4F5FFD1CAB6574008029CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		FC4F5FFE1CAB6574008029CD /* Build configuration list for PBXNativeTarget "PostinoTests" */ = {
 			isa = XCConfigurationList;
@@ -386,6 +389,7 @@
 				FC4F60001CAB6574008029CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
