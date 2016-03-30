@@ -1,0 +1,5 @@
+language: objective-c
+osx_image: xcode7.3
+xcode_project: Postino.xcodeproj
+xcode_scheme: Postino
+xcode_sdk: iphonesimulator9.3
