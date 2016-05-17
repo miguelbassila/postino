@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FC4A03931CE770A3003BCFB9 /* Postino.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4A03921CE770A3003BCFB9 /* Postino.swift */; };
+		FC4E25DA1CAB784F006ACCB2 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4E25D91CAB784F006ACCB2 /* Notification.swift */; };
+		FC4E25DE1CAB7A0F006ACCB2 /* NotificationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4E25DD1CAB7A0F006ACCB2 /* NotificationOperation.swift */; };
 		FC4F5FEB1CAB6574008029CD /* Postino.h in Headers */ = {isa = PBXBuildFile; fileRef = FC4F5FEA1CAB6574008029CD /* Postino.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FC4F5FF21CAB6574008029CD /* Postino.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC4F5FE71CAB6574008029CD /* Postino.framework */; };
 		FC4F5FF71CAB6574008029CD /* PostinoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4F5FF61CAB6574008029CD /* PostinoTests.swift */; };
@@ -23,6 +26,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FC4A03921CE770A3003BCFB9 /* Postino.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Postino.swift; sourceTree = "<group>"; };
+		FC4E25D91CAB784F006ACCB2 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		FC4E25DD1CAB7A0F006ACCB2 /* NotificationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationOperation.swift; sourceTree = "<group>"; };
 		FC4F5FE71CAB6574008029CD /* Postino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Postino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC4F5FEA1CAB6574008029CD /* Postino.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Postino.h; sourceTree = "<group>"; };
 		FC4F5FEC1CAB6574008029CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -73,6 +79,9 @@
 			children = (
 				FC4F5FEA1CAB6574008029CD /* Postino.h */,
 				FC4F5FEC1CAB6574008029CD /* Info.plist */,
+				FC4E25D91CAB784F006ACCB2 /* Notification.swift */,
+				FC4E25DD1CAB7A0F006ACCB2 /* NotificationOperation.swift */,
+				FC4A03921CE770A3003BCFB9 /* Postino.swift */,
 			);
 			path = Postino;
 			sourceTree = "<group>";
@@ -194,6 +203,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC4E25DA1CAB784F006ACCB2 /* Notification.swift in Sources */,
+				FC4E25DE1CAB7A0F006ACCB2 /* NotificationOperation.swift in Sources */,
+				FC4A03931CE770A3003BCFB9 /* Postino.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +322,7 @@
 		FC4F5FFC1CAB6574008029CD /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -321,12 +334,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.miguelbassila.Postino;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		FC4F5FFD1CAB6574008029CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
