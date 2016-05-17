@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
 
   s.name         = "Postino"
   s.version      = "0.0.1"
-  s.summary      = ""
+  s.summary      = "Elegant notification library"
   s.homepage     = "https://github.com/miguelbassila/postino"
   s.license      = "MIT"
   s.author       = { "Miguel Bassila" => "miguelbassila@me.com" }

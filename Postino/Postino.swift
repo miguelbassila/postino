@@ -18,7 +18,7 @@ public struct Postino {
     return operationQueue
   }()
 
-  mutating func add(notification: Notification) {
+  public mutating func add(notification: Notification) {
     let operation = NotificationOperation(notification: notification)
     operationQueue.addOperation(operation)
   }
