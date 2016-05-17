@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		FC4A03931CE770A3003BCFB9 /* Postino.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4A03921CE770A3003BCFB9 /* Postino.swift */; };
+		FC4A03D91CEAB081003BCFB9 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4A03D81CEAB081003BCFB9 /* NotificationView.swift */; };
 		FC4E25DA1CAB784F006ACCB2 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4E25D91CAB784F006ACCB2 /* Notification.swift */; };
 		FC4E25DE1CAB7A0F006ACCB2 /* NotificationOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4E25DD1CAB7A0F006ACCB2 /* NotificationOperation.swift */; };
 		FC4F5FEB1CAB6574008029CD /* Postino.h in Headers */ = {isa = PBXBuildFile; fileRef = FC4F5FEA1CAB6574008029CD /* Postino.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		FC4A03921CE770A3003BCFB9 /* Postino.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Postino.swift; sourceTree = "<group>"; };
+		FC4A03D81CEAB081003BCFB9 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		FC4E25D91CAB784F006ACCB2 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		FC4E25DD1CAB7A0F006ACCB2 /* NotificationOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationOperation.swift; sourceTree = "<group>"; };
 		FC4F5FE71CAB6574008029CD /* Postino.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Postino.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 				FC4F5FEC1CAB6574008029CD /* Info.plist */,
 				FC4E25D91CAB784F006ACCB2 /* Notification.swift */,
 				FC4E25DD1CAB7A0F006ACCB2 /* NotificationOperation.swift */,
+				FC4A03D81CEAB081003BCFB9 /* NotificationView.swift */,
 				FC4A03921CE770A3003BCFB9 /* Postino.swift */,
 			);
 			path = Postino;
@@ -206,6 +209,7 @@
 				FC4E25DA1CAB784F006ACCB2 /* Notification.swift in Sources */,
 				FC4E25DE1CAB7A0F006ACCB2 /* NotificationOperation.swift in Sources */,
 				FC4A03931CE770A3003BCFB9 /* Postino.swift in Sources */,
+				FC4A03D91CEAB081003BCFB9 /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
