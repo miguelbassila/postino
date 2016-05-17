@@ -10,7 +10,7 @@ import Foundation
 
 public struct Postino {
 
-  static let sharedInstance = Postino()
+  public static let sharedInstance = Postino()
 
   lazy private var operationQueue: NSOperationQueue = {
     let operationQueue = NSOperationQueue()
