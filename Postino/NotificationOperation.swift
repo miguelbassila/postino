@@ -32,6 +32,10 @@ class NotificationOperation: NSOperation {
     }
   }
 
+  class func keyPathsForValuesAffectingIsFinished() -> NSSet {
+    return NSSet(array: ["state"])
+  }
+
   override var finished: Bool {
     return state == .Finished
   }
@@ -39,10 +43,6 @@ class NotificationOperation: NSOperation {
   init(notification: Notification, presentationContext: UIViewController) {
     self.notification = notification
     self.presentationContext = presentationContext
-  }
-
-  override func start() {
-    super.start()
   }
 
   override func main() {
