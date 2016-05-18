@@ -19,7 +19,7 @@ public struct Postino {
     return operationQueue
   }()
 
-  public mutating func deliver(notification: Notification, at viewController: UIViewController) {
+  public mutating func deliver(notification: Notification, atViewController viewController: UIViewController) {
     let operation = NotificationOperation(notification: notification, presentationContext: viewController)
     operationQueue.addOperation(operation)
   }
