@@ -16,7 +16,9 @@ class NotificationOperation: NSOperation {
 
   private enum State {
     case Started
+    case Executing
     case Finished
+    case Canceled
   }
 
   private var internalState: State = .Started
@@ -32,12 +34,20 @@ class NotificationOperation: NSOperation {
     }
   }
 
+  override var finished: Bool {
+    return state == .Finished
+  }
+
   class func keyPathsForValuesAffectingIsFinished() -> NSSet {
     return NSSet(array: ["state"])
   }
 
-  override var finished: Bool {
-    return state == .Finished
+  class func keyPathsForValuesAffectingIsExecuting() -> NSSet {
+    return NSSet(array: ["state"])
+  }
+
+  class func keyPathsForValuesAffectingIsCanceled() -> NSSet {
+    return NSSet(array: ["state"])
   }
 
   init(notification: Notification, presentationContext: UIViewController) {
@@ -46,7 +56,12 @@ class NotificationOperation: NSOperation {
   }
 
   override func main() {
-    if cancelled  { return }
+    if cancelled  {
+      state = .Canceled
+      return
+    }
+
+    state = .Executing
 
     dispatch_async(dispatch_get_main_queue()) { [unowned self] () -> () in
       let notificationView = NotificationView(frame: CGRect(x: 0, y: -100, width: self.presentationContext.view.frame.size.width, height: 100))
