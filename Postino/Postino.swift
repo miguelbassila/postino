@@ -8,22 +8,23 @@
 
 import Foundation
 
+@available(iOS 9.0, *)
 public struct Postino {
 
   public static let sharedInstance = Postino()
 
-  lazy var operationQueue: NSOperationQueue = {
-    let operationQueue = NSOperationQueue()
-    operationQueue.maxConcurrentOperationCount = 1
-    return operationQueue
-  }()
+  private let operationQueue = NSOperationQueue()
 
-  public mutating func deliver(notification: Notification, atViewController viewController: UIViewController) {
+  private init() {
+    operationQueue.maxConcurrentOperationCount = 1
+  }
+
+  public func deliver(notification: Notification, atViewController viewController: UIViewController) {
     let operation = NotificationOperation(notification: notification, presentationContext: viewController)
     operationQueue.addOperation(operation)
   }
 
-  public mutating func cancel() {
+  public func cancel() {
     operationQueue.cancelAllOperations()
   }
 }
