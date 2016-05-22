@@ -9,11 +9,15 @@
 import Foundation
 
 public struct Notification {
-  let title: String
-  let subtitle: String
+  public let title: String
+  public let subtitle: String
 
-  public init(title: String, subtitle: String) {
+  public typealias onTap = ((Notification) -> ())?
+  let action: onTap
+
+  public init(title: String, subtitle: String, action: onTap = nil) {
     self.title = title
     self.subtitle = subtitle
+    self.action = action
   }
 }
