@@ -8,7 +8,6 @@
 
 import Foundation
 
-@available(iOS 9.0, *)
 public struct Postino {
 
   public static let sharedInstance = Postino()
