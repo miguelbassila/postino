@@ -15,13 +15,14 @@ class NotificationOperation: NSOperation {
   let presentationContext: UIViewController
 
   private enum State {
-    case Started
+    case Ready
     case Executing
     case Finished
     case Canceled
   }
 
-  private var internalState: State = .Started
+  private var internalState: State = .Ready
+
   private var state: State {
     get {
       return self.internalState
@@ -39,15 +40,19 @@ class NotificationOperation: NSOperation {
   }
 
   class func keyPathsForValuesAffectingIsFinished() -> NSSet {
-    return NSSet(array: ["state"])
+    return ["state"]
   }
 
   class func keyPathsForValuesAffectingIsExecuting() -> NSSet {
-    return NSSet(array: ["state"])
+    return ["state"]
   }
 
   class func keyPathsForValuesAffectingIsCanceled() -> NSSet {
-    return NSSet(array: ["state"])
+    return ["state"]
+  }
+
+  class func keyPathsForValuesAffectingIsReady() -> NSSet {
+    return ["state"]
   }
 
   init(notification: Notification, presentationContext: UIViewController) {
