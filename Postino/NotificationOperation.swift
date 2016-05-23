@@ -69,23 +69,19 @@ class NotificationOperation: NSOperation {
     state = .Executing
 
     dispatch_async(dispatch_get_main_queue()) { [unowned self] () -> () in
-      let notificationView = NotificationView(frame: CGRect(x: 0, y: -100, width: self.presentationContext.view.frame.size.width, height: 100))
+      let frame = CGRect(x: 0, y: -100, width: self.presentationContext.view.frame.size.width, height: 100)
+      let notificationView = NotificationView(notification: self.notification, frame: frame)
       self.presentationContext.view.addSubview(notificationView)
 
-      UIView.animateWithDuration(0.3) {
-        var notificationViewFrame = notificationView.frame
-        notificationViewFrame.origin.y += notificationViewFrame.size.height
-        notificationView.frame = notificationViewFrame
-      }
-
-      UIView.animateWithDuration(0.3, delay: 2, options: .TransitionNone, animations: {
-        var notificationViewFrame = notificationView.frame
-        notificationViewFrame.origin.y -= notificationViewFrame.size.height
-        notificationView.frame = notificationViewFrame
-      }) { (finished) in
-        notificationView.removeFromSuperview()
-        self.state = .Finished
-      }
+      UIView.animateWithDuration(0.3, delay:0 , options: [.AllowUserInteraction], animations: {
+        var y = notificationView.frame.origin.y
+        y += 100
+        notificationView.frame.origin.y = y
+        }, completion: { (finished) in
+          if finished {
+            self.state = .Finished
+          }
+      })
     }
   }
 }
