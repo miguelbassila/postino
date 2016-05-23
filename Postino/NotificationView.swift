@@ -34,6 +34,13 @@ class NotificationView: UIView {
     return self.configureLabel(self.notification.subtitle, type: .Subtitle)
   }()
 
+  lazy private var invisibleView: UIView = {
+    let view = UIView()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(callAction(_:))))
+    return view
+  }()
+
   init(notification: Notification, frame: CGRect) {
     self.notification = notification
     super.init(frame: frame)
@@ -45,8 +52,9 @@ class NotificationView: UIView {
   }
 
   private func initialSetup() {
-    self.addSubview(stackView)
     backgroundColor = getRandomColor()
+    self.addSubview(stackView)
+    self.addSubview(invisibleView)
   }
 
   private func configureLabel(text: String, type: LabelType) -> UILabel {
@@ -62,7 +70,7 @@ class NotificationView: UIView {
     return UIColor(red: randomRed, green: randomGreen, blue: randomBlue, alpha: 1.0)
   }
 
-  @objc private func callAction(gesture: UIGestureRecognizer) {
+  @objc func callAction(gesture: UITapGestureRecognizer) {
     guard let onTapAction = notification.action else {
       return
     }
@@ -71,39 +79,78 @@ class NotificationView: UIView {
   }
 
   override public func layoutSubviews() {
-    let topConstraint = NSLayoutConstraint(item: stackView,
-                                           attribute: .Top,
-                                           relatedBy: .Equal,
-                                           toItem: self,
-                                           attribute: .Top,
-                                           multiplier: 1,
-                                           constant: 0)
+    let stackViewTopConstraint = NSLayoutConstraint(item: stackView,
+                                                    attribute: .Top,
+                                                    relatedBy: .Equal,
+                                                    toItem: self,
+                                                    attribute: .Top,
+                                                    multiplier: 1,
+                                                    constant: 0)
 
-    let leadingConstraint = NSLayoutConstraint(item: stackView,
-                                               attribute: .Leading,
-                                               relatedBy: .Equal,
-                                               toItem: self,
-                                               attribute: .Leading,
-                                               multiplier: 1,
-                                               constant: 0)
+    let stackViewLeadingConstraint = NSLayoutConstraint(item: stackView,
+                                                        attribute: .Leading,
+                                                        relatedBy: .Equal,
+                                                        toItem: self,
+                                                        attribute: .Leading,
+                                                        multiplier: 1,
+                                                        constant: 0)
 
-    let trailingConstraint = NSLayoutConstraint(item: stackView,
-                                                attribute: .Trailing,
-                                                relatedBy: .Equal,
-                                                toItem: self,
-                                                attribute: .Trailing,
-                                                multiplier: 1,
-                                                constant: 0)
+    let stackViewTrailingConstraint = NSLayoutConstraint(item: stackView,
+                                                         attribute: .Trailing,
+                                                         relatedBy: .Equal,
+                                                         toItem: self,
+                                                         attribute: .Trailing,
+                                                         multiplier: 1,
+                                                         constant: 0)
 
-    let bottomConstraint = NSLayoutConstraint(item: stackView,
-                                              attribute: .Bottom,
-                                              relatedBy: .Equal,
-                                              toItem: self,
-                                              attribute: .Bottom,
-                                              multiplier: 1,
-                                              constant: 0)
+    let stackViewBottomConstraint = NSLayoutConstraint(item: stackView,
+                                                       attribute: .Bottom,
+                                                       relatedBy: .Equal,
+                                                       toItem: self,
+                                                       attribute: .Bottom,
+                                                       multiplier: 1,
+                                                       constant: 0)
 
-    addConstraints([topConstraint, leadingConstraint, trailingConstraint, bottomConstraint])
+    let invisibleViewTopConstraint = NSLayoutConstraint(item: invisibleView,
+                                                        attribute: .Top,
+                                                        relatedBy: .Equal,
+                                                        toItem: self,
+                                                        attribute: .Top,
+                                                        multiplier: 1,
+                                                        constant: 0)
+
+    let invisibleViewLeadingConstraint = NSLayoutConstraint(item: invisibleView,
+                                                            attribute: .Leading,
+                                                            relatedBy: .Equal,
+                                                            toItem: self,
+                                                            attribute: .Leading,
+                                                            multiplier: 1,
+                                                            constant: 0)
+
+    let invisibleViewTrailingConstraint = NSLayoutConstraint(item: invisibleView,
+                                                             attribute: .Trailing,
+                                                             relatedBy: .Equal,
+                                                             toItem: self,
+                                                             attribute: .Trailing,
+                                                             multiplier: 1,
+                                                             constant: 0)
+
+    let invisibleViewBottomConstraint = NSLayoutConstraint(item: invisibleView,
+                                                           attribute: .Bottom,
+                                                           relatedBy: .Equal,
+                                                           toItem: self,
+                                                           attribute: .Bottom,
+                                                           multiplier: 1,
+                                                           constant: 0)
+    addConstraints([stackViewTopConstraint,
+      stackViewLeadingConstraint,
+      stackViewTrailingConstraint,
+      stackViewBottomConstraint,
+      invisibleViewTopConstraint,
+      invisibleViewLeadingConstraint,
+      invisibleViewTrailingConstraint,
+      invisibleViewBottomConstraint])
+    
     super.layoutSubviews()
   }
 }
