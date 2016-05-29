@@ -11,8 +11,19 @@ import Foundation
 @available(iOS 9.0, *)
 class NotificationOperation: NSOperation {
 
-  let notification: Notification
-  let presentationContext: UIViewController
+  private let notification: Notification
+  private let presentationContext: UIViewController
+
+  private let animationOptions: UIViewAnimationOptions = [.CurveEaseInOut, .AllowUserInteraction]
+  private let animationDefaultDuration = 0.5
+  private let animationDefaultDelay = 1.5
+
+  lazy private var notificationFrame: CGRect = {
+    let width = self.presentationContext.view.frame.size.width
+    let height: CGFloat = 100.0
+
+    return CGRect(x: 0, y: -height, width: width, height: height)
+  }()
 
   private enum State {
     case Ready
@@ -69,19 +80,28 @@ class NotificationOperation: NSOperation {
     state = .Executing
 
     dispatch_async(dispatch_get_main_queue()) { [unowned self] () -> () in
-      let frame = CGRect(x: 0, y: -100, width: self.presentationContext.view.frame.size.width, height: 100)
-      let notificationView = NotificationView(notification: self.notification, frame: frame)
+      let notificationView = NotificationView(notification: self.notification, frame: self.notificationFrame)
       self.presentationContext.view.addSubview(notificationView)
 
-      UIView.animateWithDuration(0.3, delay:0 , options: [.AllowUserInteraction], animations: {
-        var y = notificationView.frame.origin.y
-        y += 100
-        notificationView.frame.origin.y = y
+      UIView.animateWithDuration(self.animationDefaultDuration, delay: 0, options: self.animationOptions, animations: {
+        var frame = self.notificationFrame
+        frame.origin.y = 0
+        notificationView.frame = frame
         }, completion: { (finished) in
           if finished {
-            self.state = .Finished
+            self.performSelector(#selector(self.dismiss(_:)), withObject: notificationView, afterDelay: self.animationDefaultDelay)
           }
       })
+    }
+  }
+
+  @objc private func dismiss(view: UIView) {
+    UIView.animateWithDuration(self.animationDefaultDuration, delay: 0, options: self.animationOptions, animations: {
+      var frame = self.notificationFrame
+      frame.origin.y = -frame.size.height
+      view.frame = frame
+      }) { (finished) in
+        self.state = .Finished
     }
   }
 }
