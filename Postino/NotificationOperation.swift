@@ -17,12 +17,12 @@ class NotificationOperation: NSOperation {
   private let animationOptions: UIViewAnimationOptions = [.CurveEaseInOut, .AllowUserInteraction]
   private let animationDefaultDuration = 0.5
   private let animationDefaultDelay = 1.5
+  private let statusBarDifference: CGFloat = UIApplication.sharedApplication().statusBarHidden ? 0 : 20
 
   lazy private var notificationFrame: CGRect = {
     let width = self.presentationContext.view.frame.size.width
-    let height: CGFloat = 100.0
-
-    return CGRect(x: 0, y: -height, width: width, height: height)
+    let height: CGFloat =  44 + self.statusBarDifference
+    return CGRect(x: 0, y: -100, width: width, height: height)
   }()
 
   private enum State {
@@ -81,11 +81,17 @@ class NotificationOperation: NSOperation {
 
     dispatch_async(dispatch_get_main_queue()) { [unowned self] () -> () in
       let notificationView = NotificationView(notification: self.notification, frame: self.notificationFrame)
-      self.presentationContext.view.addSubview(notificationView)
+
+
+      guard let navigationController = self.presentationContext.navigationController else {
+        return
+      }
+
+      navigationController.navigationBar.addSubview(notificationView)
 
       UIView.animateWithDuration(self.animationDefaultDuration, delay: 0, options: self.animationOptions, animations: {
         var frame = self.notificationFrame
-        frame.origin.y = 0
+        frame.origin.y = -self.statusBarDifference
         notificationView.frame = frame
         }, completion: { (finished) in
           if finished {
@@ -97,8 +103,8 @@ class NotificationOperation: NSOperation {
 
   @objc private func dismiss(view: UIView) {
     UIView.animateWithDuration(self.animationDefaultDuration, delay: 0, options: self.animationOptions, animations: {
-      var frame = self.notificationFrame
-      frame.origin.y = -frame.size.height
+      var frame = view.frame
+      frame.origin.y = -frame.size.height - self.statusBarDifference
       view.frame = frame
       }) { (finished) in
         self.state = .Finished

@@ -71,6 +71,7 @@ class NotificationView: UIView {
   }
 
   @objc func callAction(gesture: UITapGestureRecognizer) {
+    gesture.view?.removeGestureRecognizer(gesture)
     guard let onTapAction = notification.action else {
       return
     }
@@ -79,13 +80,15 @@ class NotificationView: UIView {
   }
 
   override public func layoutSubviews() {
+    let topConstant: CGFloat = UIApplication.sharedApplication().statusBarHidden ? 0 : 20
+
     let stackViewTopConstraint = NSLayoutConstraint(item: stackView,
                                                     attribute: .Top,
                                                     relatedBy: .Equal,
                                                     toItem: self,
                                                     attribute: .Top,
                                                     multiplier: 1,
-                                                    constant: 0)
+                                                    constant: topConstant)
 
     let stackViewLeadingConstraint = NSLayoutConstraint(item: stackView,
                                                         attribute: .Leading,
